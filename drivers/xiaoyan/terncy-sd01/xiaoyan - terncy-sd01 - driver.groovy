@@ -30,7 +30,7 @@ import hubitat.zigbee.zcl.DataType
 metadata {
 
 
-    definition (name: getModelName(), namespace: "siaison", author: "Aaron Chilcott / siaison") {
+    definition (name: getModelName(), namespace: "siaison.co", author: "Aaron Chilcott / siaison") {
 
         capability "Configuration"
         capability "Battery"
