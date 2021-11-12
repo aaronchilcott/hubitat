@@ -57,6 +57,9 @@ metadata {
         attribute "rotationDirection", "STRING"
 
         attribute "whenLastButtonPushed", "NUMBER"
+        attribute "whenLastButtonHeld", "NUMBER"
+
+
 
 
 /* Clusters:
