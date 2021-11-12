@@ -379,7 +379,7 @@ private getDEVICE_CLUSTERS() {
         Identify: 0x0003,
         OnOff: 0x0006,
         OTAUpgrade: 0x0019,
-        PollControll: 0x0020,
+        PollControl: 0x0020,
         DeviceCustom: 0xFCCC,
     ]
 }
@@ -522,7 +522,7 @@ def parse(String description) {
 				def caps = "${data[11]}"
 				DEBUG("Received DEVICE DISCOVERY BROADCAST: ${id16}  ${id64}  ${caps}")
 
-			} else if (descMap.clusterInt == DEVICE_CLUSTERS.PollControll && descMap.command == "00") {
+      } else if (descMap.clusterInt == DEVICE_CLUSTERS.PollControl && descMap.command == "00") {
 
 				DEBUG("Received Poll controll")
 
