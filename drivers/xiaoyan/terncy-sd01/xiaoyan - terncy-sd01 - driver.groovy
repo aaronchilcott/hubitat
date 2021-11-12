@@ -145,7 +145,7 @@ private getModel() { "TERNCY-SD01" }
 
 private getModelName() { "Terncy-SD01 Dial" }
 
-private getVERSION() { "v0.1HE-beta" }
+private getVERSION() { "v0.2HE-beta" }
 
 private getManufacturer() { "Xiaoyan" }
 
