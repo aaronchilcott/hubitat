@@ -109,6 +109,58 @@ metadata {
             defaultValue: true)
 
 
+        input(name: "volumeMuteOnTriggerButtonId",
+            title: "Mute: On Button ID",
+            description: "Choose which button triggers mute on, keep the button the same as Mute: Off for mute toggle. Note: Hold buttons are 11 ",
+            type: "enum",
+            options: [
+                1: "Tap 1",
+                2: "Tap 2",
+                3: "Tap 3",
+                4: "Tap 4",
+                5: "Tap 5",
+                6: "Tap 6",
+                7: "Tap 7",
+                8: "Tap 8",
+                9: "Tap 9",
+                11: "Hold 1 (ID: 11)",
+                12: "Hold 2 (ID: 12)",
+                13: "Hold 3 (ID: 13)",
+                14: "Hold 4 (ID: 14)",
+                15: "Hold 5 (ID: 15)",
+                16: "Hold 6 (ID: 16)",
+                17: "Hold 7 (ID: 17)",
+                18: "Hold 8 (ID: 18)",
+            ],
+            defaultValue: true)
+
+
+        input(name: "volumeMuteOffTriggerButtonId",
+            title: "Mute: Off Button ID",
+            description: "Choose which button triggers mute off, keep the button the same as Mute: On for mute toggle",
+            type: "enum",
+            options: [
+                1: "Tap 1",
+                2: "Tap 2",
+                3: "Tap 3",
+                4: "Tap 4",
+                5: "Tap 5",
+                6: "Tap 6",
+                7: "Tap 7",
+                8: "Tap 8",
+                9: "Tap 9",
+                11: "Hold 1 (ID: 11)",
+                12: "Hold 2 (ID: 12)",
+                13: "Hold 3 (ID: 13)",
+                14: "Hold 4 (ID: 14)",
+                15: "Hold 5 (ID: 15)",
+                16: "Hold 6 (ID: 16)",
+                17: "Hold 7 (ID: 17)",
+                18: "Hold 8 (ID: 18)",
+            ],
+            defaultValue: true)
+
+
         input(name: "rotationUnitOfMeasure",
             title: "Rotation change: Unit of measure",
             description: "The unit the value of the rotation change is measured in.",
