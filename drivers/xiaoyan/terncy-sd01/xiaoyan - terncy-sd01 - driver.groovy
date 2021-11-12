@@ -36,6 +36,7 @@ metadata {
         capability "Battery"
 
         capability "PushableButton"
+        capability "HoldableButton"
         capability "LevelPreset"
         capability "AudioVolume"
 
@@ -717,16 +718,27 @@ private sendButtonEvent(buttonNumber, buttonState, type) {
 
     def descriptionText = "$device.displayName button ${buttonNumber} (${getButtonById(buttonNumber).NAME}) was pushed"
 
-	if (buttonNumber > 0) {
+	if (buttonNumber >= DEVICE_BUTTONS.PRESS_X1.ID && buttonNumber <= DEVICE_BUTTONS.PRESS_X9.ID) {
 
 		sendEvent(name: "pushed", value: buttonNumber, type: type, descriptionText: descriptionText, isStateChange: true)
-		
+
 		INFO("sendButtonEvent: sendEvent(name: \"pushed\", value: ${buttonNumber}, descriptionText: \"${descriptionText}\", isStateChange: true)")
+
+        descriptionText = "$device.displayName a button was pushed"
+
+        sendEvent(name: "whenLastButtonPushed", value: now(), type: type, descriptionText: descriptionText, isStateChange: true)
     }
 
-    descriptionText = "$device.displayName a button was pushed"
+	if (buttonNumber >= DEVICE_BUTTONS.HOLD_X1.ID && buttonNumber <= DEVICE_BUTTONS.HOLD_X8.ID) {
 
-    sendEvent(name: "whenLastButtonPushed", value: now(), type: type, descriptionText: descriptionText, isStateChange: true)
+		sendEvent(name: "held", value: buttonNumber, type: type, descriptionText: descriptionText, isStateChange: true)
+
+        descriptionText = "$device.displayName a button was held"
+
+		INFO("sendButtonEvent: sendEvent(name: \"held\", value: ${buttonNumber}, descriptionText: \"${descriptionText}\", isStateChange: true)")
+    }
+
+
 
 
 
