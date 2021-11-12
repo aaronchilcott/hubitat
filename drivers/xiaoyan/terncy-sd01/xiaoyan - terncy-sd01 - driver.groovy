@@ -631,6 +631,15 @@ private Map getBatteryEvent(value) {
     return result
 }
 
+
+private Long getWhenLastButtonHeld() {
+  def result = device.currentValue("whenLastButtonHeld")
+
+  DEBUG "Getting when Last button held: ${result}"
+
+  return result.toLong() as Long
+}
+
 private Map getButtonEvent(Map descMap) {
     def buttonState = ""
     def buttonNumber = 0
