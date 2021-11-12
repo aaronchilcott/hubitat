@@ -372,7 +372,7 @@ private getAVAILABLE_VOLUME_STEPS() {
     return list
 
 }
-
+// descMap: [raw:catchall: 0000 8021 00 00 0040 00 FB4D 00 00 0000 00 00 0D00, profileId:0000, clusterId:8021, clusterInt:32801, sourceEndpoint:00, destinationEndpoint:00, options:0040,
 private getDEVICE_CLUSTERS() {
     [
         Basic: 0x0000,
@@ -381,6 +381,7 @@ private getDEVICE_CLUSTERS() {
         OnOff: 0x0006,
         OTAUpgrade: 0x0019,
         PollControl: 0x0020,
+        UnkownClusterId1: 0x8021,
         DeviceCustom: 0xFCCC,
     ]
 }
@@ -525,7 +526,11 @@ def parse(String description) {
 
       } else if (descMap.clusterInt == DEVICE_CLUSTERS.PollControl && descMap.command == "00") {
 
-				DEBUG("Received Poll controll")
+				DEBUG("Received Poll control")
+
+			} else if (descMap.clusterInt == DEVICE_CLUSTERS.UnkownClusterId1) {
+
+				DEBUG("Received Unknown cluster 8021")
 
 			} else {
 				DEBUG("UNHANDLED REPORT: \ndescription: ${description}\ndescMap: ${descMap}")
