@@ -637,10 +637,11 @@ private Integer getVolumeStepSize() {
 }
 
 private void setVolumeMuteState(isMuted, type) {
-    def descriptionText = "$device.displayName volume was set with a value of ${volume}"
+    def descriptionText = "$device.displayName volume was set with a value of ${isMuted}"
 
-    DEBUG("${isMuted ? " Muting " : " Un - muting "} volume")
     sendEvent(name: "mute", value: isMuted, type: type, descriptionText: descriptionText, isStateChange: true)
+
+    DEBUG("sendEvent(name: \"mute\", value: ${isMuted}, type: ${type}, descriptionText: ${descriptionText}, isStateChange: true)")
 }
 
 private void setVolumeLevel(volume, type) {
