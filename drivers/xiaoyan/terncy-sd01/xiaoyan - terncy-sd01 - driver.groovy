@@ -150,7 +150,7 @@ private getModelName() {
 }
 
 private getVERSION() {
-    "v0.2HE-beta"
+    "v0.3HE-beta"
 }
 
 private getManufacturer() {
