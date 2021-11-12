@@ -674,13 +674,38 @@ private Map getButtonEvent(Map descMap) {
 
     }
 
-    if (buttonState == BUTTON_STATES.PUSHED || buttonState == BUTTON_STATES.HELD) {
+    if (buttonState == BUTTON_STATES.HELD) {
+      // Terncy dial sends a button held event every ~1 second if you continuously hold the button, +100ms give a little margin of error
+      def waitMs = 1100
+      def whenNow = now() //new Date();
 
+
+      def descriptionText = "$device.displayName button ${buttonNumber} was held at ${whenNowDate}, waiting for ${waitMs}ms to see if it is not the last"
+      DEBUG(descriptionText)
+
+      sendEvent(name: "whenLastButtonHeld", value: whenNow, type: type, descriptionText: descriptionText, isStateChange: true)
+
+      synchronized(this) {
+        this.wait(waitMs)
+      }
+
+      def whenLastHeld = getWhenLastButtonHeld()
+
+      if (whenLastHeld == whenNow) {
+        DEBUG("Sending button hold event for ${buttonNumber} as no further hold events detected after: ${whenNow}")
         sendButtonEvent(buttonNumber, buttonState, type)
+      } else {
+        DEBUG("Not sending button event for ${buttonNumber} because another hold event was triggered after: ${whenNow} and is now: ${whenLastHeld}")
+      }
+
+
+    } else if (buttonState == BUTTON_STATES.PUSHED) {
+
+      sendButtonEvent(buttonNumber, buttonState, type)
 
     } else if (buttonState == BUTTON_STATES.ROTATED) {
 
-        triggerRotationEvent(buttonNumber, buttonState, amount, type)
+      triggerRotationEvent(buttonNumber, buttonState, amount, type)
 
     }
 
