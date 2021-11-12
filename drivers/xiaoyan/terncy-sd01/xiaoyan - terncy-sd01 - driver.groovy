@@ -818,8 +818,18 @@ private sendButtonEvent(buttonNumber, buttonState, type) {
     }
 
 
+    DEBUG("HOLD check: buttonNumber ${buttonNumber} == volumeMuteOnTriggerButtonId ${volumeMuteOnTriggerButtonId} ${buttonNumber == volumeMuteOnTriggerButtonId as Integer && buttonNumber == volumeMuteOffTriggerButtonId as Integer}")
 
+    if (buttonNumber == volumeMuteOnTriggerButtonId as Integer && buttonNumber == volumeMuteOffTriggerButtonId as Integer) {
+        // Toggle mute
+        def mute = device.currentValue("mute") == "true" || device.currentValue("mute") == true
 
+        setVolumeMuteState(!mute, type)
+    } else if (buttonNumber == volumeMuteOnTriggerButtonId as Integer) {
+        setVolumeMuteState(true, type)
+    } else if (buttonNumber == volumeMuteOffTriggerButtonId as Integer) {
+        setVolumeMuteState(false, type)
+    }
 
 }
 
